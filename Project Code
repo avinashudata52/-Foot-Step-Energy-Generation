@@ -1,0 +1,18 @@
+const int sensorPin = A0;            // Analog input pin for the sensor
+const int forceThreshold = 50;       // Adjust this threshold as needed
+
+void setup() {
+  Serial.begin(9600);                // Initialize serial communication
+}
+
+void loop() {
+  int sensorValue = analogRead(sensorPin);
+  
+  if (sensorValue > forceThreshold) { // Check if force is applied to the sensor
+    float voltage = sensorValue * (5.0 / 1023.0);  // Convert sensor value to voltage
+    Serial.print("Voltage from Sensor: ");
+    Serial.print(voltage, 2);         // Print voltage with 2 decimal places
+    Serial.println(" V");
+    delay(1000);                      // Delay to stabilize readings
+  }
+}
